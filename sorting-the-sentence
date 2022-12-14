@@ -1,0 +1,33 @@
+/**
+ * @param {string} s
+ * @return {string}
+ */
+var sortSentence = function(s) {
+    let words = s.split(' ');
+    let nums = [];
+    let wordWithOnylyLetter = [];
+    words.forEach(word =>{
+        nums.push(parseInt(word[word.length-1]))
+        let changetoArray = word.split('');
+        changetoArray.pop();
+        changetoArray = changetoArray.join('');
+        wordWithOnylyLetter.push(changetoArray);
+        
+    })
+
+    // sort numbers so that we can get the correct position of words
+    for(let i = 0; i < nums.length;i++){
+       for(let k = 0; k < nums.length-1;k++){
+           if(nums[k] > nums[k+1]){
+               let temp = nums[k];
+                    nums[k] = nums[k+1];
+                    nums[k+1] = temp;
+                let temp2 =  wordWithOnylyLetter[k];
+                     wordWithOnylyLetter[k] =  wordWithOnylyLetter[k+1];
+                     wordWithOnylyLetter[k+1] = temp2;     
+           }
+       }
+     
+    }
+    return  wordWithOnylyLetter.join(' ');
+};
